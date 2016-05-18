@@ -14,6 +14,7 @@
 		A67777B31CECD694000313DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A67777B21CECD694000313DD /* Assets.xcassets */; };
 		A67777B61CECD694000313DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67777B41CECD694000313DD /* LaunchScreen.storyboard */; };
 		A67777C11CECD694000313DD /* MonsteHunterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67777C01CECD694000313DD /* MonsteHunterUITests.swift */; };
+		A68968DF1CED275D00118A3E /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68968DE1CED275D00118A3E /* PopoverController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		A67777BC1CECD694000313DD /* MonsteHunterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonsteHunterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67777C01CECD694000313DD /* MonsteHunterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsteHunterUITests.swift; sourceTree = "<group>"; };
 		A67777C21CECD694000313DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A68968DE1CED275D00118A3E /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		A67777A71CECD694000313DD /* MonsteHunter */ = {
 			isa = PBXGroup;
 			children = (
+				A68968DE1CED275D00118A3E /* PopoverController.swift */,
 				A67777A81CECD694000313DD /* AppDelegate.swift */,
 				A67777AA1CECD694000313DD /* ViewController.swift */,
 				A67777AC1CECD694000313DD /* Main.storyboard */,
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A67777AB1CECD694000313DD /* ViewController.swift in Sources */,
+				A68968DF1CED275D00118A3E /* PopoverController.swift in Sources */,
 				A67777A91CECD694000313DD /* AppDelegate.swift in Sources */,
 				A67777B11CECD694000313DD /* MonsteHunter.xcdatamodeld in Sources */,
 			);
@@ -392,6 +396,7 @@
 				A67777C71CECD694000313DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A67777C81CECD694000313DD /* Build configuration list for PBXNativeTarget "MonsteHunterUITests" */ = {
 			isa = XCConfigurationList;
@@ -400,6 +405,7 @@
 				A67777CA1CECD694000313DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
