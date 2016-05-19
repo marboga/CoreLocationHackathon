@@ -112,6 +112,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+     override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
     
     // location delegate metod
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

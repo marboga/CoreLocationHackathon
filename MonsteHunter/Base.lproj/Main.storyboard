@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Your Location" id="XX7-z4-ro3"/>
                     <connections>
                         <outlet property="mapView" destination="TYe-CC-Tvq" id="oiK-sB-Gwp"/>
-                        <segue destination="4wJ-2q-T2n" kind="popoverPresentation" identifier="PopoverSegue" popoverAnchorView="TYe-CC-Tvq" id="ZLF-hq-duo">
+                        <segue destination="4wJ-2q-T2n" kind="popoverPresentation" identifier="NextScene" popoverAnchorView="TYe-CC-Tvq" id="ZLF-hq-duo">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
@@ -143,7 +143,7 @@
                     <navigationItem key="navigationItem" title="Pocket Monster Online" id="Jiu-Og-EOT">
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="2PR-AV-xGi">
                             <connections>
-                                <segue destination="fn8-vc-Bn6" kind="show" id="Tmw-x1-Pfv"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="MFu-re-xVb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -154,24 +154,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCX-WI-apE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1365" y="521"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="tLr-Sb-5Jh">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fn8-vc-Bn6" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NXY-59-XuF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pao-TN-W2e"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ldp-4L-vYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1426" y="1303"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k6K-XN-9cg">
