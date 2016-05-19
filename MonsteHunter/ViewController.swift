@@ -29,46 +29,46 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.showsUserLocation = true
         mapView.delegate = self
         
-            let request = MKLocalSearchRequest()
-            
-            request.naturalLanguageQuery = "starbucks"
-            request.region = mapView.region
+        let request = MKLocalSearchRequest()
         
-            let search = MKLocalSearch(request: request)
-            search.startWithCompletionHandler { (response, error) in
-                guard let response = response else {
-                    print("Search error: \(error)")
-                    return
-                }
+        request.naturalLanguageQuery = "restaurant"
+        request.region = mapView.region
+    
+        let search = MKLocalSearch(request: request)
+        search.startWithCompletionHandler { (response, error) in
+            guard let response = response else {
+                print("Search error: \(error)")
+                return
+            }
+            
+            for item in response.mapItems {
+                // ...
                 
-                for item in response.mapItems {
-                    // ...
-                    
-                    print(item, "ITEM")
-                    let dropPin = MKPointAnnotation()
-                    dropPin.coordinate = item.placemark.coordinate
-                    dropPin.title = "a wild Pokemon appeared..."
-                    dropPin.subtitle = "(what could it be?)"
+                print(item, "ITEM")
+                let dropPin = MKPointAnnotation()
+                dropPin.coordinate = item.placemark.coordinate
+                dropPin.title = "a wild Pokemon appeared..."
+                dropPin.subtitle = "(what could it be?)"
 //                    dropPin.canShowCallout = true
 //                    dropPin.detailCalloutAccessoryView = UIImage(image:UIImage(named:"pika"))
-                    
-                    
-                    let info1 = CustomPointAnnotation()
-                    info1.coordinate = item.placemark.coordinate
-                    info1.title = "Pokemon"
-                    info1.subtitle = "pika pika"
-                    info1.imageName = "pika"
-                    
-    //this is where we make our custom annotation biz
-                    
-                    let annView = MKAnnotationView.init(annotation: dropPin, reuseIdentifier: "test")
-                    annView.image = UIImage(named: "pika")
-                    annView.centerOffset = CGPointMake(0, 0)
-                    
-                    
-                    print(annView.image)
-                    self.mapView.addAnnotation(dropPin)
-                }
+                
+                
+                let info1 = CustomPointAnnotation()
+                info1.coordinate = item.placemark.coordinate
+                info1.title = "Pokemon"
+                info1.subtitle = "pika pika"
+                info1.imageName = "pika"
+                
+//this is where we make our custom annotation biz
+                
+                let annView = MKAnnotationView.init(annotation: dropPin, reuseIdentifier: "test")
+                annView.image = UIImage(named: "pika")
+                annView.centerOffset = CGPointMake(0, 0)
+                
+                
+                print(annView.image)
+                self.mapView.addAnnotation(dropPin)
+            }
 
         }
     }
