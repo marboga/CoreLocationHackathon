@@ -13,6 +13,8 @@ class PopoverController: UIViewController {
     
     @IBOutlet weak var imageOutlet: UIImageView!
     
+    let imageArray: [String] = ["pika", ]
+    
     var annotation = MKPointAnnotation()
     
     override func viewDidLoad() {

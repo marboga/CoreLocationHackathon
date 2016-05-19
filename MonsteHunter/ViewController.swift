@@ -45,7 +45,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 // ...
                 
                 print(item, "ITEM")
-                let dropPin = MKPointAnnotation()
+                let dropPin = CustomPointAnnotation()
                 dropPin.coordinate = item.placemark.coordinate
                 dropPin.title = "a wild Pokemon appeared..."
                 dropPin.subtitle = "(what could it be?)"
@@ -87,6 +87,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if !(annotation is CustomPointAnnotation) {
+            return nil
+        }
         let identifier = "pin"
         var view: MKPinAnnotationView
         if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
@@ -97,8 +100,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
+            let smallSquare = CGSize(width: 30, height: 30)
+            let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
+            button.setBackgroundImage(UIImage(named: "pokeball"), forState: .Normal)
+            button.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+            view.leftCalloutAccessoryView = button
             view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
-            //                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
+            view.rightCalloutAccessoryView?.tintColor = UIColor.greenColor()
         }
         return view
     }
