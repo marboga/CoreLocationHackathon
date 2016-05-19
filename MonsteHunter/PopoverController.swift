@@ -24,6 +24,7 @@ class PopoverController: UIViewController {
     let randNum = Int(arc4random_uniform(3))
     
     var allowCatches = false
+    var canAttack = true
     
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -60,30 +61,55 @@ class PopoverController: UIViewController {
     }
     
     @IBAction func fightButtonPressed(sender: UIButton) {
-        let attackNum: Int = Int(arc4random_uniform(35) + 4)
-        
-        let life = dicto[randNum][1]
-        print(life)
-        
-        let remainingLife: Int = Int(life as! NSNumber) - attackNum
-        if remainingLife > 0 {
-            healthLabel.text = "Health: \(remainingLife)"
-            print(remainingLife, "Remaining Life")
-            dicto[randNum][1] = remainingLife
+        if canAttack == true {
+            let attackNum: Int = Int(arc4random_uniform(35) + 4)
+            
+            let life = dicto[randNum][1]
+            print(life)
+            
+            let remainingLife: Int = Int(life as! NSNumber) - attackNum
+            if remainingLife > 0 {
+                healthLabel.text = "Health: \(remainingLife)"
+                print(remainingLife, "Remaining Life")
+                dicto[randNum][1] = remainingLife
                 if remainingLife < 50 {
-                healthLabel.textColor = UIColor.redColor()
-                allowCatches = true
+                    allowCatches = true
+                    healthLabel.textColor = UIColor.redColor()
+                }
+               if remainingLife < 0 {
+//                    print("You killed it.")
+//                    dicto[randNum][1] = remainingLife
+//                    allowCatches = false
+//                    canAttack = false
+//                    nameLabel.text = "You killed it..."
+                }
+            } else {
+                print("You killed it.")
+                dicto[randNum][1] = remainingLife
+                allowCatches = false
+                canAttack = false
+                healthLabel.text = "Health: 0"
+                nameLabel.text = "You killed it..."
+//                var timer = NSTimer()
+//                let delay = 1.5
+//                timer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: #selector(delayedAction), userInfo: nil, repeats: false)
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
-        } else {
-            print("You killed it.")
-            dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+
+//    func delayedAction() {
+//        dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     @IBAction func ballButtonPressed(sender: UIButton) {
         if allowCatches == true {
             nameLabel.text = "Caught a \(dicto[randNum][0])!"
-            
+            canAttack = false
         }
     }
     
