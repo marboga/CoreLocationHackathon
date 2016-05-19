@@ -65,12 +65,12 @@ class PopoverController: UIViewController {
         let life = dicto[randNum][1]
         print(life)
         
-        let remainingLife: Int = Int(life as! NSNumber) - Int(attackNum)
+        let remainingLife: Int = Int(life as! NSNumber) - attackNum
         if remainingLife > 0 {
             healthLabel.text = "Health: \(remainingLife)"
-            let subtraction: Int = Int(life as! NSNumber) - remainingLife
-            dicto[randNum][1] = "\(subtraction)"
-                if subtraction < 50 {
+            print(remainingLife, "Remaining Life")
+            dicto[randNum][1] = remainingLife
+                if remainingLife < 50 {
                 healthLabel.textColor = UIColor.redColor()
                 allowCatches = true
             }
@@ -83,6 +83,7 @@ class PopoverController: UIViewController {
     @IBAction func ballButtonPressed(sender: UIButton) {
         if allowCatches == true {
             nameLabel.text = "Caught a \(dicto[randNum][0])!"
+            
         }
     }
     
