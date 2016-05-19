@@ -27,14 +27,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //start looking for location
         self.locationManager.startUpdatingLocation()
         self.mapView.showsUserLocation = true
+        mapView.delegate = self
         
             let request = MKLocalSearchRequest()
             
             request.naturalLanguageQuery = "starbucks"
             request.region = mapView.region
-        
-    
-        
         
             let search = MKLocalSearch(request: request)
             search.startWithCompletionHandler { (response, error) in
@@ -46,10 +44,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 for item in response.mapItems {
                     // ...
                     
-                    print(item)
+                    print(item, "ITEM")
                     let dropPin = MKPointAnnotation()
                     dropPin.coordinate = item.placemark.coordinate
-                    dropPin.title = item.name
+                    dropPin.title = "a wild Pokemon appeared..."
+                    dropPin.subtitle = "(what could it be?)"
+//                    dropPin.canShowCallout = true
+//                    dropPin.detailCalloutAccessoryView = UIImage(image:UIImage(named:"pika"))
                     
                     
                     let info1 = CustomPointAnnotation()
@@ -66,7 +67,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     
                     
                     print(annView.image)
-                    self.mapView.addAnnotation(info1)
+                    self.mapView.addAnnotation(dropPin)
                 }
 
         }
@@ -76,7 +77,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var imageName: String!
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) {
             return nil
         }
@@ -86,7 +87,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView!.canShowCallout = true
+            anView?.canShowCallout = true
+            anView?.rightCalloutAccessoryView = UIButton(type: .System)
         }
         else {
             anView!.annotation = annotation
@@ -107,11 +109,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("blabbo")
-    }
-    
-     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     

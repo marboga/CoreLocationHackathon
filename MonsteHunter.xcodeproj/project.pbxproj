@@ -15,6 +15,7 @@
 		A67777B61CECD694000313DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67777B41CECD694000313DD /* LaunchScreen.storyboard */; };
 		A67777C11CECD694000313DD /* MonsteHunterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67777C01CECD694000313DD /* MonsteHunterUITests.swift */; };
 		A68968DF1CED275D00118A3E /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68968DE1CED275D00118A3E /* PopoverController.swift */; };
+		A68968E11CED300B00118A3E /* FlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68968E01CED300B00118A3E /* FlyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		A67777C01CECD694000313DD /* MonsteHunterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsteHunterUITests.swift; sourceTree = "<group>"; };
 		A67777C21CECD694000313DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A68968DE1CED275D00118A3E /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
+		A68968E01CED300B00118A3E /* FlyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				A68968DE1CED275D00118A3E /* PopoverController.swift */,
 				A67777A81CECD694000313DD /* AppDelegate.swift */,
 				A67777AA1CECD694000313DD /* ViewController.swift */,
+				A68968E01CED300B00118A3E /* FlyViewController.swift */,
 				A67777AC1CECD694000313DD /* Main.storyboard */,
 				A67777B21CECD694000313DD /* Assets.xcassets */,
 				A67777B41CECD694000313DD /* LaunchScreen.storyboard */,
@@ -206,6 +209,7 @@
 				A67777AB1CECD694000313DD /* ViewController.swift in Sources */,
 				A68968DF1CED275D00118A3E /* PopoverController.swift in Sources */,
 				A67777A91CECD694000313DD /* AppDelegate.swift in Sources */,
+				A68968E11CED300B00118A3E /* FlyViewController.swift in Sources */,
 				A67777B11CECD694000313DD /* MonsteHunter.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
