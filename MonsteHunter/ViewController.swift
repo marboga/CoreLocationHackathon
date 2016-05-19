@@ -51,22 +51,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 dropPin.subtitle = "(what could it be?)"
 //                    dropPin.canShowCallout = true
 //                    dropPin.detailCalloutAccessoryView = UIImage(image:UIImage(named:"pika"))
-                
-                
-                let info1 = CustomPointAnnotation()
-                info1.coordinate = item.placemark.coordinate
-                info1.title = "Pokemon"
-                info1.subtitle = "pika pika"
-                info1.imageName = "pika"
-                
-//this is where we make our custom annotation biz
-                
-                let annView = MKAnnotationView.init(annotation: dropPin, reuseIdentifier: "test")
-                annView.image = UIImage(named: "pika")
-                annView.centerOffset = CGPointMake(0, 0)
-                
-                
-                print(annView.image)
+ 
                 self.mapView.addAnnotation(dropPin)
             }
 
@@ -77,46 +62,63 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var imageName: String!
     }
     
+//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+//        
+//        
+//        let reuseId = "test"
+//        
+//        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+//        if anView == nil {
+//            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+//            anView?.canShowCallout = true
+//            anView?.rightCalloutAccessoryView = UIButton(type: .System)
+//        }
+//        else {
+//            anView!.annotation = annotation
+//        }
+//        
+//        //Set annotation-specific properties **AFTER**
+//        //the view is dequeued or created...
+//        
+//        let cpa = annotation as! CustomPointAnnotation
+//        anView!.image = UIImage(named:"pika")
+//        
+//        return anView
+//    }
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if !(annotation is CustomPointAnnotation) {
-            return nil
+        let identifier = "pin"
+        var view: MKPinAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+            as? MKPinAnnotationView {
+            dequeuedView.annotation = annotation as MKAnnotation
+            view = dequeuedView
+        } else {
+            view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+            //                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
         }
-        
-        let reuseId = "test"
-        
-        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-        if anView == nil {
-            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView?.canShowCallout = true
-            anView?.rightCalloutAccessoryView = UIButton(type: .System)
+        return view
+    }
+    
+    var selectedAnnotation: MKPointAnnotation!
+    
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            selectedAnnotation = view.annotation as? MKPointAnnotation
+            performSegueWithIdentifier("showDetail", sender: self)
         }
-        else {
-            anView!.annotation = annotation
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? PopoverController {
+            print("IN SEGUE")
+            destination.annotation = selectedAnnotation
         }
-        
-        //Set annotation-specific properties **AFTER**
-        //the view is dequeued or created...
-        
-        let cpa = annotation as! CustomPointAnnotation
-        anView!.image = UIImage(named:"pika")
-        
-        return anView
     }
-    
-    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
-        
-    }
-    
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        print("blabbo")
-        
-    }
-    
-     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     
     // location delegate metod
